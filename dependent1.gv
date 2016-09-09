@@ -1,0 +1,80 @@
+digraph G {
+    rankdir = "LR";
+    fontsize=10;
+    fontname="serif";
+    node [fontsize=10 fontname="serif" shape=box style=rounded width=0.4 height=0.2];
+    edge [arrowsize=0.5];
+    concentrate=true;
+    nodesep = 0.18;
+    ranksep = 0.2;
+    newrank = true;
+    // splines = ortho
+
+    n25 [label="信息技术讲座"];
+    n31 [label="金工实习"];
+
+    n01 [label="微积分\n（一）"];
+    n02 [label="微积分\n（二）"];
+    n03 [label="线性代数"];
+    n04 [label="概率统计"];
+    n05 [label="工程数学(复变)"];
+    n06 [label="普通物理\n（二）（上）"];
+    n07 [label="普通物理\n（二）（下）"];
+    
+    n26 [label="电子实验基础"];
+    n09 [label="计算机基础"];
+    n10 [label="C语言\n程序设计"];
+    n11 [label="电路分析"];
+    n12 [label="模拟电路"];
+    n13 [label="数字系统与\n逻辑设计"];
+    n14 [label="信号与系统"];
+    n15 [label="电磁场与电磁波"];
+
+    n16 [label="计算机通\n信与网络"];
+    n17 [label="数字信号处理"];
+    n18 [label="高频电子线路"];
+    n19 [label="通信原理"];
+    n27 [label="信号与电路\n基础实验"];
+
+    n20 [label="微波技术与天线"];
+    n21 [label="微机原理与\n接口技术"];
+
+    n23 [label="普通物理实验"];
+    n28 [label="课程设计"];
+    n29 [label="电子线路实验"];
+    n32 [label="通信系统综合实验"];
+    n33 [label="毕业实习"];
+    n34 [label="毕业设计\n（论文）"];
+
+    subgraph cluster_0 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white,shape=box];
+        "term1" [label="第一学期"];
+        "term2" [label="第二学期"];
+        "term3" [label="第三学期"];
+        "term4" [label="第四学期"];
+        "term5" [label="第五学期"];
+        "term6" [label="第六学期"];
+        "term7" [label="第七学期"];
+        "term8" [label="第八学期"];
+        term1 -> term2 -> term3 -> term4 -> term5 -> term6 -> term7 -> term8 [style=invis];
+    }
+
+    {rank = same; term1; n03; n01; n09; }
+    {rank = same; term2; n04; n02; n06; n23; n10; n11; }
+    {rank = same; term3; n07; n26; n05; n13; n12; n14; }
+    {rank = same; term4; n27; n18; n15; n17; }
+    {rank = same; term5; n29; n19; n20; n21; n31; n25; }
+    {rank = same; term6; n16; n28; }
+    {rank = same; term7; n32; n33 }
+    {rank = same; term8; n34;}
+
+    n01 -> n02 -> n05; n01 -> n04 -> n19; n01 -> n06 -> n07 -> n15 -> n20 [weight=2];
+    n09 -> n10 -> n16 -> n32; n11 -> n12 -> n18 -> n29 [weight=6];
+    n11 -> n13 -> n21 -> {n32, n28 } [weight=2];
+    {n01, n03} -> n11 -> n14 -> n17 -> n19 -> n32 [weight=2];
+    n05 -> n14; n05 -> n15
+    n10 -> n21;
+    n06 -> n23; n11 -> n26; n14 -> n27;
+}

@@ -1,0 +1,59 @@
+digraph G {
+    rankdir = "LR";
+    fontsize=10;
+    fontname="serif";
+    node [fontsize=10 fontname="serif" shape=box style=rounded width=0.4 height=0.2];
+    edge [arrowsize=0.5];
+    concentrate=true;
+    nodesep = 0.18;
+    ranksep = 0.2;
+    newrank = true;
+    // splines = ortho
+
+    n22 [label="军事技能"];
+    n35 [label="大学英语\n（一）"];
+    n36 [label="大学英语\n（二）"];
+    n37 [label="大学英语\n（三）"];
+    n38 [label="大学英语\n（四）"];
+    n39 [label="军事理论\n（一~二学期）"];
+    n40 [label="马克思主义\n基本原理"];
+    n41 [label="毛泽东思想和中\n国特色社会主义\n理论体系概论"];
+    n42 [label="思想道德修养\n与法律基础"];
+    n43 [label="形势与政策\n（一~八学期）"];
+    n44 [label="职业生涯\n规划指导\n（一~八学期）"];
+    n46 [label="中国近现代史\n纲要"];
+    n47 [label="公共体育\n（一）"];
+    n48 [label="公共体育\n（二）"];
+    n49 [label="公共体育\n（三）"];
+    n50 [label="公共体育\n（四）"];
+    n51 [label="毛泽东思想和\n中国特色社会\n主义理论体系\n概论社会实践\n（上）"];
+    n52 [label="毛泽东思想和\n中国特色社会\n主义理论体系\n概论社会实践\n（下）"];
+
+    subgraph cluster_0 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white,shape=box];
+        "term1" [label="第一学期"];
+        "term2" [label="第二学期"];
+        "term3" [label="第三学期"];
+        "term4" [label="第四学期"];
+        "term5" [label="第五学期"];
+        "term6" [label="第六学期"];
+        "term7" [label="第七学期"];
+        "term8" [label="第八学期"];
+        term1 -> term2 -> term3 -> term4 -> term5 -> term6 -> term7 -> term8 [style=invis];
+    }
+
+    {rank = same; term1; n42; n43; n44; n35; n47; n22; n39; }
+    {rank = same; term2; n36; n46; n48; n51; }
+    {rank = same; term3; n37; n40; n49; }
+    {rank = same; term4; n41; n50; n52; }
+    {rank = same; term5; }
+    {rank = same; term6; }
+    {rank = same; term7; }
+    {rank = same; term8; }
+
+    n35 -> n36 -> n37 -> n38; n47 -> n48 -> n49 -> n50;
+    n51 -> n52; n22 -> n39
+    n46 -> n41; n40 -> n41; 
+}

@@ -1,0 +1,44 @@
+digraph G {
+    // rankdir = "LR";
+    fontsize=10;
+    fontname="serif";
+    node [fontsize=10 fontname="serif" shape=box style=rounded width=0.4 height=0.2];
+    edge [arrowsize=0.5];
+    // concentrate=true;
+    // nodesep = 0.2;
+    // ranksep = 0.2;
+    newrank = true;
+    splines = ortho
+    compound = true
+
+    {
+        rank = same;
+        "evaluation" [label="毕业要求达成度评价"];
+        "outcomes" [label="毕业要求"];
+    }
+    {
+        rank = same;
+        "assessment" [shape=record, label=" { 课程体系设置评价 | 教学质量评价 } "];
+        "curriculum" [label="教学计划"];
+        "faculty_facilities" [shape=record, label=" { 师资队伍 | 支持条件 } "];
+    }
+
+    subgraph cluster_obj {
+        style = invis
+        outcomes -> curriculum [dir=back, color=gold, lhead="cluster_cur"];
+        outcomes -> curriculum [color=deeppink, lhead="cluster_cur"];
+        subgraph cluster_cur {
+            style = ""
+            label = "课程体系"
+            syllabus [label="课程"]
+            course_assessment [label="课程评价"]
+            curriculum -> syllabus [color=deeppink]
+            syllabus -> course_assessment [dir=back, color=green]
+        }
+    }
+
+    evaluation -> assessment [style = invis]
+    evaluation -> outcomes [color=green];
+    assessment -> curriculum [color=green, lhead="cluster_cur"];
+    curriculum -> faculty_facilities [dir=back, color=deepskyblue, ltail="cluster_cur"]
+}
